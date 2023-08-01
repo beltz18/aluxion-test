@@ -1,17 +1,20 @@
 import { Router } from 'express'
 import bcrypt     from 'bcrypt'
 
+import {
+  regUser,
+  logUser,
+  forgotPsw,
+} from '../controllers/user.controller.js'
+
 const userRouter = Router()
 
 userRouter.post('/user/register', async (req,res) => {
-  let { nam, ema, psw } = req.body
-  psw = await bcrypt.hash(psw, 10)
-
-  res.json({
-    'message': 'user data received!',
-    'status': true,
-    'user': { nam, ema, psw }
-  })
+  let { name, email, password } = req.body
+  const salt   = bcrypt.genSaltSync(10)
+  const hashed = await bcrypt.hash(password, salt)
+  const user   = await regUser(name, email, hashed)
+  res.json(user)
 })
 
 userRouter.post('/user/login')
