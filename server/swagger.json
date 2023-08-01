@@ -1,0 +1,72 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Skill test for Full Stack Developer Position",
+    "version": "1.0.0",
+    "title": "Aluxion Test",
+    "contact": {
+      "email": "anmdev32@gmail.com"
+    }
+  },
+  "schemes": [
+    "http"
+  ],
+  "host": "localhost:18000",
+  "basePath": "/",
+  "paths": {
+    "user/register": {
+      "post": {
+        "summary": "Create a new user",
+        "description": "By receiving an object creates a new user after validate this user doesnt exists in database",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "user created",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/userResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "Email already taken",
+            "schema": {
+              "$ref": "#/definitions/emailTaken"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "userResponse": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "emailTaken": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "status": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
-import app    from './controllers/app.js'
-import * as v from '../global/var.js'
-import mongo  from 'mongoose'
+const app  = require('./controllers/app.js')
+const v    = require('../global/var.js')
+const mongo= require('mongoose')
 
 const __init__ = () => {
   mongo.connect(v.MONGO_URI, {})

@@ -1,11 +1,11 @@
-import { Router } from 'express'
-import bcrypt     from 'bcrypt'
+const { Router } = require('express')
+const bcrypt     = require('bcrypt')
 
-import {
+const {
   regUser,
   logUser,
   forgotPsw,
-} from '../controllers/user.controller.js'
+} = require('../controllers/user.controller.js')
 
 const userRouter = Router()
 
@@ -17,8 +17,12 @@ userRouter.post('/user/register', async (req,res) => {
   res.json(user)
 })
 
-userRouter.post('/user/login')
+userRouter.post('/user/login', async (req, res) => {
+  const { email, password } = req.body
+  const authUser            = await logUser(email, password)
+  res.json(authUser)
+})
 
 userRouter.post('/user/forgotPassword')
 
-export default userRouter
+module.exports = userRouter
