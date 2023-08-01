@@ -1,11 +1,20 @@
 import app    from './controllers/app.js'
 import * as v from '../global/var.js'
+import mongo  from 'mongoose'
 
 const __init__ = () => {
-  app().listen(v.PORT, (err) => {
-    if (err) throw err
-    console.log(`Connection established on PORT: ${v.PORT}`);
-  })
+  mongo.connect(v.MONGO_URI, {})
+    .then(() => {
+      console.log('Connected to Mongo succesfully')
+      app().listen(v.PORT, (err) => {
+        if (err) throw err
+        console.log(`Connection established on PORT: ${v.PORT}`)
+      })
+    })
+    .catch((err) => {
+      console.log(Error(err))
+      console.log('Error intentando conectar a la base de datos')
+    })
 }
 
 __init__()
