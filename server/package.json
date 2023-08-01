@@ -1,0 +1,31 @@
+{
+  "name": "aluxion-test-server",
+  "version": "1.0.0",
+  "description": "Skill test for Full Stack Developer Position",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beltz18/aluxion-test.git"
+  },
+  "author": "Andi Dev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/beltz18/aluxion-test/issues"
+  },
+  "homepage": "https://github.com/beltz18/aluxion-test#readme",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2"
+  }
+}
